@@ -28,6 +28,7 @@ Este proyecto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-ap
 Este proyecto es una aplicación web para consultar información detallada sobre direcciones IP. Utiliza Next.js, Framer Motion para animaciones, y un diseño atractivo hecho con Tailwind CSS. Proporciona detalles como la ubicación, el ISP, y posibles riesgos asociados a la IP.
 
 Características 🚀
+
 Consulta de IPs: Busca información sobre cualquier dirección IP ingresada.
 Diseño moderno e interactivo: Animaciones fluidas con Framer Motion.
 Historial de búsquedas: Muestra un registro de las IPs consultadas recientemente.
