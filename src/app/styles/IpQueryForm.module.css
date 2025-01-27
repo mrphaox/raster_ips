@@ -1,0 +1,50 @@
+/* components/IpQueryForm.module.css */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #005bb5;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid esmerald;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #005bb5;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.result {
+    margin-top: 20px;
+    text-align: left;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+}
