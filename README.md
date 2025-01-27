@@ -7,14 +7,14 @@ Este es un proyecto [Next.js](https://nextjs.org) arrancado con [`create-next-ap
 
 Primero, ejecuta el servidor de desarrollo:
 
-```bash
+```
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 # or
-bun dev
+run dev
 ```
 
 Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
@@ -27,7 +27,7 @@ Este proyecto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-ap
 
 Este proyecto es una aplicación web para consultar información detallada sobre direcciones IP. Utiliza Next.js, Framer Motion para animaciones, y un diseño atractivo hecho con Tailwind CSS. Proporciona detalles como la ubicación, el ISP, y posibles riesgos asociados a la IP.
 
-Características 🚀
+## Características 🚀
 
 Consulta de IPs: Busca información sobre cualquier dirección IP ingresada.
 Diseño moderno e interactivo: Animaciones fluidas con Framer Motion.
@@ -35,18 +35,18 @@ Historial de búsquedas: Muestra un registro de las IPs consultadas recientement
 Interacción amigable: Botones para "Buscar otra IP" y "Eliminar búsqueda" con efectos visuales atractivos.
 Soporte para tema oscuro: Diseño que se adapta a preferencias de tema claro/oscuro.
 
-Tecnologías Utilizadas 🛠️
-```
+## Tecnologías Utilizadas 🛠️
+
 Next.js: Framework de React para aplicaciones web modernas.
 Framer Motion: Librería para crear animaciones fluidas y atractivas.
 Tailwind CSS: Framework de diseño para estilos rápidos y personalizables.
 Axios: Para realizar solicitudes HTTP.
 TypeScript: Para tipado estático y mayor confiabilidad en el código.
-```
-Instalación 🧑‍💻
+
+## Instalación 🧑‍💻
 Clona este repositorio:
 
-# or
+# clonacion 
 git clone https://github.com/tu-usuario/consulta-ip.git
 cd consulta-ip
 Instala las dependencias:
@@ -60,10 +60,8 @@ Editar
 npm run dev
 Abre el navegador en http://localhost:3000.
 
-Estructura del Proyecto 📂
-php
-Copiar
-Editar
+## Estructura del Proyecto 📂
+```
 📦 consulta-ip
 ├── 📁 components
 │   └── IpQueryForm.tsx  # Componente principal del formulario
@@ -76,39 +74,37 @@ Editar
 ├── README.md            # Este archivo
 └── package.json         # Dependencias y configuración del proyecto
 Configuración Adicional ⚙️
-Si necesitas personalizar la API de consulta de IP, edita el endpoint en IpQueryForm.tsx:
 
-ts
-Copiar
-Editar
+Si necesitas personalizar la API de consulta de IP, edita el endpoint en IpQueryForm.tsx:
+```
+```
 const response = await axios.get(`/api/ip-query?ip=${ip}`);
+```
 Puedes reemplazar /api/ip-query con cualquier endpoint que acepte una dirección IP como parámetro.
 
-Contribuciones 🤝
+## Contribuciones 🤝
 ¡Las contribuciones son bienvenidas! Si tienes ideas o mejoras para el proyecto:
 
 Haz un fork del repositorio.
 Crea una rama para tus cambios:
-bash
-Copiar
-Editar
+```
 git checkout -b feature/nueva-funcionalidad
+```
 Haz commit de tus cambios:
-bash
-Copiar
-Editar
+```
 git commit -m "Agrega nueva funcionalidad"
+```
 Sube los cambios:
-bash
-Copiar
-Editar
+```
 git push origin feature/nueva-funcionalidad
+```
 Crea un pull request.
-Licencia 📜
+
+## Licencia 📜
 Este proyecto está bajo la licencia MIT.
 
 Autor 👨‍💻
-Desarrollado con ❤️ por Tu Nombre o Usuario de GitHub.
+Desarrollado con ❤️ por Oscar Neira Phaox
 
 ## Despliegue en Vercel
 
