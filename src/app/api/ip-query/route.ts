@@ -14,6 +14,7 @@ export async function GET(request: Request) {
         const data = await response.json();
         return NextResponse.json(data);
     } catch (error) {
+        console.error('Error al consultar la API externa:', error); // Registrar el error
         return NextResponse.json({ error: 'Error al consultar la API externa' }, { status: 500 });
     }
 }
