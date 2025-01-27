@@ -1,5 +1,5 @@
 
-Consulta de IP 🌐
+#Consulta de IP 🌐
 
 Este es un proyecto [Next.js](https://nextjs.org) arrancado con [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
@@ -9,11 +9,11 @@ Primero, ejecuta el servidor de desarrollo:
 
 ``bash
 npm run dev
-# o
+# or
 yarn dev
-# o
+# or
 pnpm dev
-# o
+# or
 bun dev
 ```
 
@@ -52,17 +52,12 @@ TypeScript: Para tipado estático y mayor confiabilidad en el código.
 Instalación 🧑‍💻
 Clona este repositorio:
 
-bash
-Copiar
-Editar
+# or
 git clone https://github.com/tu-usuario/consulta-ip.git
 cd consulta-ip
 Instala las dependencias:
 
-bash
-Copiar
-Editar
-npm install
+## npm install
 Ejecuta el servidor de desarrollo:
 
 bash
