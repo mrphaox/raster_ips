@@ -7,7 +7,7 @@ Este es un proyecto [Next.js](https://nextjs.org) arrancado con [`create-next-ap
 
 Primero, ejecuta el servidor de desarrollo:
 
-``bash
+```bash
 npm run dev
 # or
 yarn dev
