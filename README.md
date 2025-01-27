@@ -34,22 +34,15 @@ Diseño moderno e interactivo: Animaciones fluidas con Framer Motion.
 Historial de búsquedas: Muestra un registro de las IPs consultadas recientemente.
 Interacción amigable: Botones para "Buscar otra IP" y "Eliminar búsqueda" con efectos visuales atractivos.
 Soporte para tema oscuro: Diseño que se adapta a preferencias de tema claro/oscuro.
-Capturas de Pantalla 📸
-Pantalla Principal
-[Coloca aquí una captura de la pantalla inicial]
-
-Resultados de Búsqueda
-[Coloca aquí una captura de la sección de resultados]
-
-Historial de Búsquedas
-[Coloca aquí una captura de la lista de historial]
 
 Tecnologías Utilizadas 🛠️
+```
 Next.js: Framework de React para aplicaciones web modernas.
 Framer Motion: Librería para crear animaciones fluidas y atractivas.
 Tailwind CSS: Framework de diseño para estilos rápidos y personalizables.
 Axios: Para realizar solicitudes HTTP.
 TypeScript: Para tipado estático y mayor confiabilidad en el código.
+```
 Instalación 🧑‍💻
 Clona este repositorio:
 
