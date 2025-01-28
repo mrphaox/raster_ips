@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+#Consulta de IP 🌐
 
-First, run the development server:
+Este es un proyecto [Next.js](https://nextjs.org) arrancado con [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-```bash
+## Empezando
+
+Primero, ejecuta el servidor de desarrollo:
+
+```
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 # or
-bun dev
+run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Puedes empezar a editar la página modificando `app/page.tsx`. La página se auto-actualiza a medida que editas el archivo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este proyecto utiliza [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para optimizar y cargar automáticamente [Geist](https://vercel.com/font), una nueva familia de fuentes para Vercel.
 
-## Learn More
+## Más información
 
-To learn more about Next.js, take a look at the following resources:
+Este proyecto es una aplicación web para consultar información detallada sobre direcciones IP. Utiliza Next.js, Framer Motion para animaciones, y un diseño atractivo hecho con Tailwind CSS. Proporciona detalles como la ubicación, el ISP, y posibles riesgos asociados a la IP.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Características 🚀
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Consulta de IPs: Busca información sobre cualquier dirección IP ingresada.
+Diseño moderno e interactivo: Animaciones fluidas con Framer Motion.
+Historial de búsquedas: Muestra un registro de las IPs consultadas recientemente.
+Interacción amigable: Botones para "Buscar otra IP" y "Eliminar búsqueda" con efectos visuales atractivos.
+Soporte para tema oscuro: Diseño que se adapta a preferencias de tema claro/oscuro.
 
-## Deploy on Vercel
+## Tecnologías Utilizadas 🛠️
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js: Framework de React para aplicaciones web modernas.
+Framer Motion: Librería para crear animaciones fluidas y atractivas.
+Tailwind CSS: Framework de diseño para estilos rápidos y personalizables.
+Axios: Para realizar solicitudes HTTP.
+TypeScript: Para tipado estático y mayor confiabilidad en el código.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Instalación 🧑‍💻
+Clona este repositorio:
+
+# clonacion 
+git clone https://github.com/tu-usuario/consulta-ip.git
+cd consulta-ip
+Instala las dependencias:
+
+## npm install
+Ejecuta el servidor de desarrollo:
+
+bash
+Copiar
+Editar
+npm run dev
+Abre el navegador en http://localhost:3000.
+
+## Estructura del Proyecto 📂
+```
+📦 consulta-ip
+├── 📁 components
+│   └── IpQueryForm.tsx  # Componente principal del formulario
+├── 📁 pages
+│   ├── index.tsx        # Página principal
+│   ├── _app.tsx         # Configuración global
+├── 📁 public            # Recursos estáticos
+├── 📁 styles
+│   └── globals.css      # Estilos globales
+├── README.md            # Este archivo
+└── package.json         # Dependencias y configuración del proyecto
+Configuración Adicional ⚙️
+
+Si necesitas personalizar la API de consulta de IP, edita el endpoint en IpQueryForm.tsx:
+```
+```
+const response = await axios.get(`/api/ip-query?ip=${ip}`);
+```
+Puedes reemplazar /api/ip-query con cualquier endpoint que acepte una dirección IP como parámetro.
+
+## Contribuciones 🤝
+¡Las contribuciones son bienvenidas! Si tienes ideas o mejoras para el proyecto:
+
+Haz un fork del repositorio.
+Crea una rama para tus cambios:
+```
+git checkout -b feature/nueva-funcionalidad
+```
+Haz commit de tus cambios:
+```
+git commit -m "Agrega nueva funcionalidad"
+```
+Sube los cambios:
+```
+git push origin feature/nueva-funcionalidad
+```
+Crea un pull request.
+
+## Licencia 📜
+Este proyecto está bajo la licencia MIT.
+
+Autor 👨‍💻
+Desarrollado con ❤️ por Oscar Neira Phaox
+
+## Despliegue en Vercel
+
+La forma más sencilla de desplegar tu aplicación Next.js es utilizar la [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) de los creadores de Next.js.
+
+Echa un vistazo a nuestra [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) para más detalles.
+
