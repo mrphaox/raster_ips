@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import MapView from "@/components/MapView";
@@ -8,7 +8,16 @@ import MapView from "@/components/MapView";
 interface IpQueryResponse {
   ip: string;
   isp?: { asn: string; org: string; isp: string };
-  location?: { country: string; city: string; state: string; latitude: number; longitude: number };
+  location?: {
+    country: string;
+    country_code: string;
+    flag: string;
+    city: string;
+    state: string;
+    timezone: string;
+    latitude: number;
+    longitude: number;
+  };
   risk?: { is_vpn: boolean; is_proxy: boolean };
 }
 
@@ -19,6 +28,13 @@ const IpQueryForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  useEffect(() => {
+    const storedHistory = localStorage.getItem("ipHistory");
+    if (storedHistory) {
+      setHistory(JSON.parse(storedHistory));
+    }
+  }, []);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
@@ -28,7 +44,10 @@ const IpQueryForm: React.FC = () => {
     try {
       const response = await axios.get(`/api/ip-query?ip=${ip}`);
       setData(response.data);
-      setHistory((prev) => [response.data, ...prev]); // Guardar en historial
+      const newHistory = [response.data, ...history];
+
+      localStorage.setItem("ipHistory", JSON.stringify(newHistory));
+      setHistory(newHistory);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
     } finally {
@@ -37,7 +56,9 @@ const IpQueryForm: React.FC = () => {
   };
 
   const handleRemoveFromHistory = (index: number) => {
-    setHistory((prev) => prev.filter((_, i) => i !== index));
+    const newHistory = history.filter((_, i) => i !== index);
+    setHistory(newHistory);
+    localStorage.setItem("ipHistory", JSON.stringify(newHistory));
   };
 
   return (
@@ -47,7 +68,6 @@ const IpQueryForm: React.FC = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg"
     >
-      {/* FORMULARIO */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <motion.input
           whileFocus={{ scale: 1.05, borderColor: "#2563EB" }}
@@ -69,7 +89,6 @@ const IpQueryForm: React.FC = () => {
         </motion.button>
       </form>
 
-      {/* ERROR */}
       {error && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -81,7 +100,6 @@ const IpQueryForm: React.FC = () => {
         </motion.div>
       )}
 
-      {/* RESULTADOS Y MAPA */}
       {data && (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -89,18 +107,60 @@ const IpQueryForm: React.FC = () => {
           transition={{ duration: 0.4 }}
           className="mt-6 p-4 bg-gray-100 dark:bg-gray-700 rounded-md space-y-4"
         >
-          <h3 className="font-bold text-lg">Resultados para {data.ip}:</h3>
-          <pre className="text-sm text-gray-800 dark:text-gray-200">
-            {JSON.stringify(data, null, 2)}
-          </pre>
+          <h3 className="font-bold text-lg text-blue-600 dark:text-blue-300">
+            Resultados para {data.ip}
+          </h3>
+
+          {/* Proveedor de Internet */}
+          {data.isp && (
+            <div className="p-3 bg-gray-200 dark:bg-gray-800 rounded-md">
+              <h4 className="font-bold">Proveedor de Internet (ISP):</h4>
+              <p className="text-sm">{data.isp.isp}</p>
+              <p className="text-sm text-gray-500">{data.isp.org} (ASN: {data.isp.asn})</p>
+            </div>
+          )}
+
+          {/* Ubicación */}
+          {data.location && (
+            <div className="p-3 bg-gray-200 dark:bg-gray-800 rounded-md">
+              <h4 className="font-bold">Ubicación:</h4>
+              <p className="text-sm">
+                <span className="font-bold">Ciudad:</span> {data.location.city}
+              </p>
+              <p className="text-sm">
+                <span className="font-bold">Estado:</span> {data.location.state}
+              </p>
+              <p className="text-sm">
+                <span className="font-bold">País:</span> {data.location.country} 
+                <span className="ml-2 text-lg">{data.location.flag}</span>
+              </p>
+              <p className="text-sm">
+                <span className="font-bold">Código de País:</span> {data.location.country_code}
+              </p>
+              <p className="text-sm">
+                <span className="font-bold">Zona Horaria:</span> {data.location.timezone}
+              </p>
+              <p className="text-sm text-gray-500">
+                <span className="font-bold">Coordenadas:</span> {data.location.latitude}, {data.location.longitude}
+              </p>
+            </div>
+          )}
+
+          {/* Riesgo */}
+          {data.risk && (
+            <div className="p-3 bg-red-100 dark:bg-red-800 rounded-md">
+              <h4 className="font-bold text-red-600">Riesgo:</h4>
+              <p className="text-sm">{data.risk.is_vpn ? "VPN detectada" : "No es VPN"}</p>
+              <p className="text-sm">{data.risk.is_proxy ? "Proxy detectado" : "No es Proxy"}</p>
+            </div>
+          )}
 
           {/* Mapa */}
           {data.location && <MapView latitude={data.location.latitude} longitude={data.location.longitude} />}
         </motion.div>
       )}
-
-      {/* HISTORIAL DE BÚSQUEDAS */}
-      {history.length > 0 && (
+       {/* HISTORIAL DE BÚSQUEDAS */}
+       {history.length > 0 && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -112,12 +172,17 @@ const IpQueryForm: React.FC = () => {
             {history.map((item, index) => (
               <motion.li
                 key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
                 className="flex justify-between items-center bg-gray-200 dark:bg-gray-600 px-4 py-2 rounded-md"
               >
-                <span className="text-sm">{item.ip}</span>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold">{item.ip}</span>
+                  <span className="text-xs text-gray-600 dark:text-gray-300">
+                    {item.location?.city}, {item.location?.country} {item.location?.flag}
+                  </span>
+                </div>
                 <button
                   onClick={() => handleRemoveFromHistory(index)}
                   className="text-red-500 hover:text-red-700 transition"
