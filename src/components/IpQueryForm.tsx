@@ -80,7 +80,7 @@ const IpQueryForm: React.FC = () => {
           type="text"
           value={ip}
           onChange={(e) => setIp(e.target.value)}
-          placeholder="Ingresa una IP"
+          placeholder="Ingresa una IPv4 o IPv6"
           className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-gray-900 dark:text-gray focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
         />
