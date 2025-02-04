@@ -1,10 +1,12 @@
-"use client";
+"use client"; // ✅ Obligamos a que Next.js renderice este componente en el cliente
 
 import Footer from "@/components/Footer";
 import IpQueryForm from "@/components/IpQueryForm";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import BackgroundAnimation from "@/components/BackgroundAnimation"; // Fondo dinámico
+export const dynamic = "force-dynamic"; // Evita prerenderización en SSR
+
 
 export default function Home() {
   return (

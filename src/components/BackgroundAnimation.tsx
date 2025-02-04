@@ -1,14 +1,22 @@
-"use client";
+"use client"; // ✅ Aseguramos que solo se ejecute en el cliente
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import { Engine } from "tsparticles-engine";
 
 const BackgroundAnimation = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // ✅ Solo activamos el efecto cuando estamos en el cliente
+  }, []);
+
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
+
+  if (!isClient) return null; // ✅ Evita errores de renderizado en el servidor
 
   return (
     <Particles

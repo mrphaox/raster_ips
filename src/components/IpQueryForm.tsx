@@ -3,7 +3,9 @@
 import { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import MapView from "@/components/MapView";
+import dynamic from "next/dynamic";
+const MapView = dynamic(() => import("@/components/MapView"), { ssr: false });
+
 
 interface IpQueryResponse {
   ip: string;
@@ -29,11 +31,15 @@ const IpQueryForm: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const storedHistory = localStorage.getItem("ipHistory");
-    if (storedHistory) {
-      setHistory(JSON.parse(storedHistory));
+    if (typeof window !== "undefined") {
+      const storedHistory = localStorage.getItem("ipHistory");
+      if (storedHistory) {
+        setHistory(JSON.parse(storedHistory));
+      }
     }
   }, []);
+  
+  
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
